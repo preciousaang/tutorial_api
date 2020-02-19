@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('register', 'RegistrationController@index');
+
 Route::group([
 
     'middleware' => 'api',
@@ -29,7 +31,17 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
-});
-Route::post('register', 'RegistrationController@index');
 
-Route::post('create-course', 'CourseController@create');
+});
+
+Route::group([
+    'middeware'=>'api',
+    'prefix'=>'courses'
+], function($router){
+    Route::post('create', 'CoursesController@create');
+    Route::post('register', 'CoursesController@register');
+    Route::post('list', 'CoursesController@list');
+});
+
+
+
