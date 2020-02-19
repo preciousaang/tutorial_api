@@ -2,16 +2,15 @@
 
 namespace App\Jobs;
 
-use App\User;
-use Exception;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Artisan;
+use Exception;
 
-class ProcessUserFactory implements ShouldQueue
+class CreateCourse implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -32,10 +31,10 @@ class ProcessUserFactory implements ShouldQueue
      */
     public function handle()
     {
-        Artisan::call('db:seed');
+        Artisan::call('db:seed --class=CoursesTableSeeder');
     }
 
-    public function failed(Exception $e){
-        report($e);
+    public function failed(Exception $exception){
+        report($exception);
     }
 }
