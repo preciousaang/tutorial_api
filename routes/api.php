@@ -41,7 +41,5 @@ Route::group([
     Route::post('create', 'CoursesController@create');
     Route::post('register', 'CoursesController@register');
     Route::post('list', 'CoursesController@list');
+    Route::post('export', 'CoursesController@export');
 });
-
-
-

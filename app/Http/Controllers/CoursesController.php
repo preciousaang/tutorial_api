@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Course;
 use Illuminate\Http\Request;
 use App\Jobs\CreateCourse;
+use Excel;
+use App\Exports\ExportCourses;
 
 class CoursesController extends Controller
 {
@@ -38,5 +40,9 @@ class CoursesController extends Controller
         });
 
         return response()->json($courses, 200);
+    }
+
+    public function export(){
+        return Excel::download(new ExportCourses, 'courses.xlsx');
     }
 }
