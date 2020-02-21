@@ -43,3 +43,4 @@ Route::group([
     Route::post('list', 'CoursesController@list');
     Route::post('export', 'CoursesController@export');
 });
+Route::get('export', 'CoursesController@export');
